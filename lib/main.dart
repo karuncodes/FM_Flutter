@@ -31,15 +31,30 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  int selectedIndex = 0;
+  int selectedIndex = 1;
   @override
   Widget build(BuildContext context) {
+
+    Widget currentPageWidget = const Text("!");
+
+    switch(selectedIndex) {
+      case 0: 
+        currentPageWidget = const Text("HomePage");
+        break;
+      case 1: 
+        currentPageWidget = const OffersPage();
+        break;
+      case 2: 
+        currentPageWidget = const Text("Orders");
+        break;
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
         title: Image.asset("images/logo.png"),
       ),
-      body: const OffersPage(),
+      body: currentPageWidget,
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.coffee), label: "Menu"),
