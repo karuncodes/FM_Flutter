@@ -1,4 +1,6 @@
-import 'package:coffee_mart/offerspage.dart';
+import 'package:coffee_mart/pages/menupage.dart';
+import 'package:coffee_mart/pages/offerspage.dart';
+import 'package:coffee_mart/pages/orderspage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -39,13 +41,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
     switch(selectedIndex) {
       case 0: 
-        currentPageWidget = const Text("HomePage");
+        currentPageWidget = const MenuPage();
         break;
       case 1: 
         currentPageWidget = const OffersPage();
         break;
       case 2: 
-        currentPageWidget = const Text("Orders");
+        currentPageWidget = const OrdersPage();
         break;
     }
 
