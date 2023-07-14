@@ -31,14 +31,31 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         title: Image.asset("images/logo.png"),
       ),
       body: const OffersPage(),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.coffee), label: "Menu"),
+          BottomNavigationBarItem(icon: Icon(Icons.local_offer), label: "Offers"),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: "Orders"),
+        ],
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        selectedItemColor: Colors.yellow.shade400,
+        unselectedItemColor: Colors.yellow.shade50,
+        currentIndex: selectedIndex,
+        onTap: (newIndex) {
+          setState(() {
+            selectedIndex = newIndex;
+          });
+        },
+      ),
     );
   }
 }

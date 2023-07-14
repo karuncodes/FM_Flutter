@@ -9,6 +9,8 @@ class OffersPage extends StatelessWidget {
       children: const [
         Offer( title: "New Offers", description: "buy 2 get 2 free",),
         Offer( title: "Another Offers", description: "buy 2 get 3 free",),
+        Offer( title: "Another Offers", description: "buy 2 get 3 free",),
+        Offer( title: "Another Offers", description: "buy 2 get 3 free",),
         Offer( title: "More Offers", description: "buy 2 get 1 free",),
       ],
     );
