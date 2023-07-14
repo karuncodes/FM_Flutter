@@ -5,7 +5,13 @@ class OffersPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Offer( title: "New Offers", description: "buy 2 get 2 free",);
+    return Column(
+      children: const [
+        Offer( title: "New Offers", description: "buy 2 get 2 free",),
+        Offer( title: "Another Offers", description: "buy 2 get 3 free",),
+        Offer( title: "More Offers", description: "buy 2 get 1 free",),
+      ],
+    );
   }
 }
 
@@ -45,7 +51,8 @@ class Offer extends StatelessWidget {
                         child: Text(title, style: Theme.of(context).textTheme.headlineMedium, ),
                       ),
                     ),
-                  )),
+                  ),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -55,7 +62,7 @@ class Offer extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(description, style: Theme.of(context).textTheme.headlineSmall,),
                     ),
-                  )),
+                  ),),
                 ),
               ],
             ),
