@@ -1,8 +1,12 @@
+import 'package:coffee_mart/datamanager.dart';
 import 'package:coffee_mart/datamodel.dart';
 import 'package:flutter/material.dart';
 
 class MenuPage extends StatelessWidget {
-  const MenuPage({super.key});
+
+  final DataManager dataManager;
+
+  const MenuPage({super.key, required this.dataManager});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +42,7 @@ class ProductItem extends StatelessWidget {
                 children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(product.name, style: TextStyle(fontWeight: FontWeight.bold,),),
+                  child: Text(product.name, style: const TextStyle(fontWeight: FontWeight.bold,),),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
