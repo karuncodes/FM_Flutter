@@ -3,7 +3,7 @@ class Product {
   String name;
   double price;
   String image;
-  String get imageUrl => 
+  String get imageUrl =>
       "https://firtman.github.io/coffeemasters/api/images/$image";
 
   Product({
@@ -35,9 +35,9 @@ class Category {
   }
 }
 
-class ItemsInCart {
+class ItemInCart {
   Product product;
   int quantity;
 
-  ItemsInCart({required this.product, required this.quantity});
+  ItemInCart({required this.product, required this.quantity});
 }

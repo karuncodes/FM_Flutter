@@ -18,21 +18,27 @@ class MenuPage extends StatelessWidget {
                 itemCount: categories.length,
                 itemBuilder: (context, index) {
                   return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(categories[index].name),
+                        padding: const EdgeInsets.only(
+                            top: 32.0, bottom: 8.0, left: 8.0),
+                        child: Text(
+                          categories[index].name,
+                          style: TextStyle(color: Colors.brown.shade400),
+                        ),
                       ),
                       ListView.builder(
                         shrinkWrap: true,
                         physics: const ClampingScrollPhysics(),
                         itemCount: categories[index].products.length,
                         itemBuilder: (context, productIndex) {
-                          var currentProduct = categories[index].products[productIndex];
+                          var currentProduct =
+                              categories[index].products[productIndex];
                           return ProductItem(
                             product: currentProduct,
-                            onAdd: () {
-                              dataManager.cartAdd(currentProduct);
+                            onAdd: (p) {
+                              dataManager.cartAdd(p);
                             },
                           );
                         },
@@ -42,7 +48,7 @@ class MenuPage extends StatelessWidget {
                 });
           } else {
             if (snapshot.hasError) {
-              return const Text("has error");
+              return Text('${snapshot.error}');
             } else {
               return const CircularProgressIndicator();
             }
@@ -91,7 +97,10 @@ class ProductItem extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(right: 8.0),
                     child: ElevatedButton(
-                        onPressed: () {}, child: const Text("Add")),
+                        onPressed: () {
+                          onAdd(product);
+                        },
+                        child: const Text("Add")),
                   )
                 ],
               )
