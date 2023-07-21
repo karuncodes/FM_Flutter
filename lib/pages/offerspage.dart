@@ -5,8 +5,21 @@ class OffersPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: const [
+
+    var screenSize = MediaQuery.of(context).size;
+    if(screenSize.width < 450 ) {
+      return ListView(
+        children: const  [
+          Offer( title: "New Offers", description: "buy 2 get 2 free",),
+          Offer( title: "Another Offers", description: "buy 2 get 3 free",),
+          Offer( title: "Another Offers", description: "buy 2 get 3 free",),
+          Offer( title: "Another Offers", description: "buy 2 get 3 free",),
+          Offer( title: "More Offers", description: "buy 2 get 1 free",),
+        ],
+      );
+    }
+    return const Wrap(
+      children: [
         Offer( title: "New Offers", description: "buy 2 get 2 free",),
         Offer( title: "Another Offers", description: "buy 2 get 3 free",),
         Offer( title: "Another Offers", description: "buy 2 get 3 free",),
@@ -28,6 +41,7 @@ class Offer extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 200,
+      width: 300,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Card(
