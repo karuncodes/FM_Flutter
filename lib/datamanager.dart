@@ -7,11 +7,12 @@ class DataManager {
   List<Category>? _menu;
   List<ItemsInCart> cart = [];
 
-  getMenu() async {
+  fetchMenu() async {
     const url = "https://firtman.github.io/coffeemasters/api/menu.json";
     var response = await http.get(Uri.parse(url));
     if(response.statusCode == 200) {
       var body = response.body;
+      _menu = [];
       var decodedData = jsonDecode(body) as List<dynamic>;
       for (var json in decodedData) {
         _menu?.add(Category.fromJson(json));
@@ -19,13 +20,11 @@ class DataManager {
     }
   }
 
-  Future<List<Category>> fetchMenu() async {
+  Future<List<Category>> getMenu() async {
     if(_menu == null) {
-      await getMenu();
+      await fetchMenu();
     }
-
     return _menu!;
-
   }
 
   cartAdd (Product p) {

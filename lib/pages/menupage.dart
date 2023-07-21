@@ -10,21 +10,49 @@ class MenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var p = Product(id: 1, name: 'Car', price: 1.25, image: "test");
-    return ListView(
-      children: [
-        ProductItem( product: p ),
-        ProductItem( product: p ),
-        ProductItem( product: p ),
-      ],
-    );
+    return FutureBuilder(builder: (context, snapshot) {
+      if(snapshot.hasData) {
+        var categories = snapshot.data!;
+        // return Text("This data is of length ${categories.length}");
+        return ListView.builder(
+          itemCount: categories.length,
+          itemBuilder: (context, index){
+            return Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(categories[index].name),
+                ),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const ClampingScrollPhysics(),
+                  itemCount: categories[index].products.length,
+                  itemBuilder: (context, productIndex) {
+                    return ProductItem(product: categories[index].products[productIndex], onAdd: () {
+                      
+                    });
+                },)
+              ],
+            );
+        });
+      }
+      else {
+        if (snapshot.hasError ) {
+          return const Text("has error");
+        }
+        else {
+          return const CircularProgressIndicator();
+        }
+      }
+    }, future: dataManager.getMenu());
   }
 }
 
 class ProductItem extends StatelessWidget {
   final Product product;
+  final Function onAdd;
 
-  const ProductItem({super.key, required this.product});
+  const ProductItem({super.key, required this.product, required this.onAdd});
 
   @override
   Widget build(BuildContext context) {
